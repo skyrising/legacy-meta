@@ -34,6 +34,7 @@ import java.util.zip.ZipOutputStream;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.fabricmc.meta.web.models.MavenVersion;
 import org.apache.commons.io.IOUtils;
 
 import net.fabricmc.meta.utils.LoaderMeta;
@@ -118,8 +119,8 @@ public class ProfileHandler {
 		// Build the libraries array with the existing libs + loader and intermediary
 		JsonArray libraries = (JsonArray) librariesObject.get("common");
 		String maven = loader.equals("fabric-loader-1.8.9") ? LoaderMeta.LEGACY_MAVEN_URL : LoaderMeta.MAVEN_URL;
-		libraries.add(getLibrary(info.getIntermediary().getMaven(), maven));
-		libraries.add(getLibrary(info.getLoader().getMaven(), maven));
+		libraries.add(getLibrary(info.getIntermediary()));
+		libraries.add(getLibrary(info.getLoader()));
 
 		if (librariesObject.has(side)) {
 			libraries.addAll(librariesObject.get(side).getAsJsonArray());
@@ -164,10 +165,10 @@ public class ProfileHandler {
 		return profile;
 	}
 
-	private static JsonObject getLibrary(String mavenPath, String url) {
+	private static JsonObject getLibrary(MavenVersion version) {
 		JsonObject jsonObject = new JsonObject();
-		jsonObject.addProperty("name", mavenPath);
-		jsonObject.addProperty("url", url);
+		jsonObject.addProperty("name", version.getMaven());
+		jsonObject.addProperty("url", version.getBase());
 		return jsonObject;
 	}
 }

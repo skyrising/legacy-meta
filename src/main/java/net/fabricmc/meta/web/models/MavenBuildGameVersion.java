@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2021 Legacy Fabric/Quilt
  * Copyright (c) 2019 FabricMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,8 +23,8 @@ public class MavenBuildGameVersion extends MavenBuildVersion {
 
 	String gameVersion;
 
-	public MavenBuildGameVersion(String maven) {
-		super(maven);
+	public MavenBuildGameVersion(String base, String maven) {
+		super(base, maven);
 		gameVersion = new YarnVersionParser(maven.split(":")[2]).getMinecraftVersion();
 
 	}

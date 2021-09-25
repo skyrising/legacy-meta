@@ -22,8 +22,8 @@ public class MavenBuildVersion extends MavenVersion {
 	String name;
 	String separator;
 
-	public MavenBuildVersion(String maven) {
-		super(maven);
+	public MavenBuildVersion(String base, String maven) {
+		super(base, maven);
 		name = maven.split(":")[1];
 		String version = maven.split(":")[2];
 

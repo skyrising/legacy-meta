@@ -42,7 +42,8 @@ tasks.withType(JavaCompile).configureEach {
 license {
 	matching(includes: ['**/VersionDatabase.java', '**/LoaderMeta.java', '**/MavenBuildVersion.java',
 						'**/MavenUrlVersion.java', '**/ProfileHandler.java', '**/EndpointsV1.java',
-						'**/EndpointsV2.java']) {
+						'**/EndpointsV2.java', '**/PomParser.java', '**/MavenBuildGameVersion.java',
+						'**/MavenVersion.java']) {
 		header = file('LFQ-HEADER')
 	}
 	header file('HEADER')

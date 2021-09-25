@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2021 Legacy Fabric/Quilt
  * Copyright (c) 2019 FabricMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,15 +19,21 @@ package net.fabricmc.meta.web.models;
 
 public class MavenVersion extends BaseVersion {
 
+	String base;
 	String maven;
 
-	public MavenVersion(String maven, boolean stable) {
+	public MavenVersion(String base, String maven, boolean stable) {
 		super(maven.split(":")[2], stable);
+		this.base = base;
 		this.maven = maven;
 	}
 
-	public MavenVersion(String maven) {
-		this(maven, false);
+	public MavenVersion(String base, String maven) {
+		this(base, maven, false);
+	}
+
+	public String getBase() {
+		return base;
 	}
 
 	public String getMaven() {
